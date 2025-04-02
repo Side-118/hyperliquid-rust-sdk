@@ -11,7 +11,7 @@ fn now_timestamp_ms() -> u64 {
     now.timestamp_millis() as u64
 }
 
-pub(crate) fn next_nonce() -> u64 {
+pub fn next_nonce() -> u64 {
     let nonce = CUR_NONCE.fetch_add(1, Ordering::Relaxed);
     let now_ms = now_timestamp_ms();
     if nonce > now_ms + 1000 {
@@ -24,9 +24,9 @@ pub(crate) fn next_nonce() -> u64 {
     nonce
 }
 
-pub(crate) const WIRE_DECIMALS: u8 = 8;
+pub const WIRE_DECIMALS: u8 = 8;
 
-pub(crate) fn float_to_string_for_hashing(x: f64) -> String {
+pub fn float_to_string_for_hashing(x: f64) -> String {
     let mut x = format!("{:.*}", WIRE_DECIMALS.into(), x);
     while x.ends_with('0') {
         x.pop();
@@ -41,7 +41,7 @@ pub(crate) fn float_to_string_for_hashing(x: f64) -> String {
     }
 }
 
-pub(crate) fn uuid_to_hex_string(uuid: Uuid) -> String {
+pub fn uuid_to_hex_string(uuid: Uuid) -> String {
     let hex_string = uuid
         .as_bytes()
         .iter()
@@ -51,7 +51,7 @@ pub(crate) fn uuid_to_hex_string(uuid: Uuid) -> String {
     format!("0x{}", hex_string)
 }
 
-pub(crate) fn generate_random_key() -> Result<[u8; 32]> {
+pub fn generate_random_key() -> Result<[u8; 32]> {
     let mut arr = [0u8; 32];
     thread_rng()
         .try_fill(&mut arr[..])
@@ -84,7 +84,7 @@ pub enum BaseUrl {
 }
 
 impl BaseUrl {
-    pub(crate) fn get_url(&self) -> String {
+    pub fn get_url(&self) -> String {
         match self {
             BaseUrl::Localhost => LOCAL_API_URL.to_string(),
             BaseUrl::Mainnet => MAINNET_API_URL.to_string(),
