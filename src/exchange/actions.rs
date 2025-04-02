@@ -1,5 +1,5 @@
 use crate::exchange::{cancel::CancelRequest, modify::ModifyRequest, order::OrderRequest};
-pub(crate) use ethers::{
+pub use ethers::{
     abi::{encode, ParamType, Tokenizable},
     types::{
         transaction::{
@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 
 use super::{cancel::CancelRequestCloid, BuilderInfo};
 
-pub(crate) const HYPERLIQUID_EIP_PREFIX: &str = "HyperliquidTransaction:";
+pub const HYPERLIQUID_EIP_PREFIX: &str = "HyperliquidTransaction:";
 
 fn eip_712_domain(chain_id: U256) -> EIP712Domain {
     EIP712Domain {
