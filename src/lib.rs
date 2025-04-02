@@ -1,15 +1,15 @@
 #![deny(unreachable_pub)]
 mod consts;
 mod errors;
-mod exchange;
-mod helpers;
+pub mod exchange;
+pub mod helpers;
 mod info;
 mod market_maker;
 mod meta;
 mod prelude;
 mod proxy_digest;
 mod req;
-mod signature;
+pub mod signature;
 mod ws;
 pub use consts::{EPSILON, LOCAL_API_URL, MAINNET_API_URL, TESTNET_API_URL};
 pub use errors::Error;
